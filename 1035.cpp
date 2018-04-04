@@ -18,38 +18,25 @@ int main(int argc, const char * argv[]) {
     int n;
     cin >> n;
     vector<int>que1 (n), que2 (n);
-    for (int i = 0; i < n; i++) {
-        cin >> que1[i];
-    }
-    for (int i = 0; i < n; i++) {
-        cin >> que2[i];
-    }
-    int mid = n -1;
-    for (; mid >= 0; mid--) {
-        if (que1[mid] != que2[mid]) {
-            break;
-        }
-    }
-    int flag = 1;
-    for (int i = 0; i < mid; i++) {
-        if (que2[i] > que2[i + 1]) {
-            flag = 0;
-        }
-    }
-    if (flag == 1) {
-        sort(que1.begin(), que1.begin() + mid + 2);
+    for (int i = 0; i < n; i++) {cin >> que1[i];}
+    for (int i = 0; i < n; i++) {cin >> que2[i];}
+    int i, j;
+    for (i = 0; i < n - 1 && que2[i] <= que2[i + 1]; i++);
+    for (j = i + 1; que1[j] == que2[j] && j < n; j++);
+    if (j == n) {
+        sort(que1.begin(), que1.begin() + i + 2);
         printf("Insertion Sort\n%d", que1[0]);
-        for (int i = 1; i < que1.size() ; i++) {
-            cout << ' '<< que1[i];
+        for (int k = 1; k < que1.size() ; k++) {
+            cout << ' '<< que1[k];
         }
     }else{
         int flag2 = 0;
-        for (int i = 1; pow(2, i) <= n ; i++) {
-            int j = 0;
-            for (; j + pow(2, i) < n; j = j + pow(2, i)) {
-                sort(que1.begin() + j, que1.begin() + j + (int)pow(2, i));
-            }
-            sort(que1.begin() + j, que1.end());
+        int k = 1;
+        while (1) {
+            k = k * 2;
+            for (int i = 0; i < n / k; i++)
+                sort(que1.begin() + i * k, que1.begin() + (i + 1) * k);
+            sort(que1.begin() + n / k * k, que1.begin() + n);
             if (flag2 == 1) {
                 printf("Merge Sort\n");
                 cout << que1[0];
