@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 
@@ -30,7 +31,7 @@ int main(int argc, const char * argv[]) {
         c2 = b2 + 17 - a2;
         b1 = b1 - 1;
     }else
-        c2 = b2 - b1;
+        c2 = b2 - a2;
     c1 = b1 - a1;
     printf("%d.%d.%d", c1, c2, c3);
     return 0;
