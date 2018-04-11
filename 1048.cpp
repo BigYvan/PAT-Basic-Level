@@ -18,8 +18,12 @@ int main(int argc, const char * argv[]) {
         }
     }
     if (alength > blength) {
-        for (int i = shorter; i < alength; i++) {
-            c.push(a[alength - i - 1]);
+        for (int i = shorter; i < a.length(); i++) {
+            if (i % 2 == 0) {
+                c.push(d[(a[alength - i - 1] - '0') % 13]);
+            }else{
+                c.push(d[(('0' - a[alength - i - 1]) + 10) % 10]);
+            }
         }
     }else{
         for (int i = shorter; i < b.length(); i++) {
@@ -32,3 +36,4 @@ int main(int argc, const char * argv[]) {
     }
     return 0;
 }
+//注意a.length > b.length 情况，b不足的位要用0部全
